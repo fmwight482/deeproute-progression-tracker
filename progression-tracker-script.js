@@ -266,11 +266,11 @@ function delete_data() {
 
 window.setTimeout( function() {
 
-  alert("something");
-
   var url=window.location.toString();
 
   if (url.indexOf("oneplayer",0) >= 0) {
+
+    //alert("found oneplayer");
 
 
     var buttontable = document.createElement('table');
@@ -315,15 +315,38 @@ window.setTimeout( function() {
     var target = document.getElementById('hili1');
     if (target) { 
 
-      target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.
+      //alert("inside if(target)");
+      /*alert("target = " + target.nodeName); 
+      alert("parentnode 1 = " + target.parentNode.nodeName);
+      alert("parentnode 2 = " + target.parentNode.parentNode.nodeName);
+      alert("parentnode 3 = " + target.parentNode.parentNode.parentNode.nodeName);
+      alert("parentnode 4 = " + target.parentNode.parentNode.parentNode.parentNode.nodeName);
+      alert("parentnode 5 = " + target.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName);
+      alert("parentnode 6 = " + target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName);
+      alert("parentnode 7 = " + target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName);
+      alert("parentnode 8 = " + target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName);
+      alert("parentnode 9 = " + target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName);
+      alert("parentnode 10 = " + target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName);
+      alert("parentnode 11 = " + target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName);
+      alert("parentnode 12 = " + target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName);
+      alert("parentnode 13 = " + target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName);
+      // */
+
+      target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.insertBefore(
+        newDiv, target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.nextSibling);
+
+      /*target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.
              parentNode.parentNode.parentNode.insertBefore(newDiv, target.parentNode.parentNode.parentNode.parentNode.
-             parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.nextSibling);
+             parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.nextSibling); */
 
 
-      target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.
-             parentNode.parentNode.parentNode.insertBefore(buttontable, target.parentNode.parentNode.parentNode.parentNode.
-             parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.nextSibling);
+      alert("inserted newdiv");
+
+
+      target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.insertBefore(
+        buttontable, target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.nextSibling);
     }
+    alert("after if(target)");
  
      var ptr1, ptr2, ptr3, input=document.body.innerHTML, lgptr=document.getElementById("mylgno"), yearptr=document.getElementById("hiyear");
 
