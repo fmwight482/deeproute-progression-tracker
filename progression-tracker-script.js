@@ -11,6 +11,7 @@
 // @include        http://deeproute.com/default.asp?js=rosters&myleagueno=*&myteamno=*
 // @include        http://deeproute.com/?js=rosters&myleagueno=*&myteamno=*
 // @include        http://deeproute.com/?js=oneplayer&leagueno=*&lookatplayer=*
+// @include        http://deeproute.com/?js=oneplayer&myleagueno=*&lookatplayer=*
 // @include        http://deeproute.com/default.asp?js=oneplayer&leagueno=*&lookatplayer=*
 // @include        http://deeproute.com/?js=oneplayergamebygame&myleagueno=*&lookatplayer=*
 // ==/UserScript==
@@ -265,6 +266,8 @@ function delete_data() {
 
 window.setTimeout( function() {
 
+  alert("something");
+
   var url=window.location.toString();
 
   if (url.indexOf("oneplayer",0) >= 0) {
@@ -320,7 +323,7 @@ window.setTimeout( function() {
       target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.
              parentNode.parentNode.parentNode.insertBefore(buttontable, target.parentNode.parentNode.parentNode.parentNode.
              parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.nextSibling);
-   }
+    }
  
      var ptr1, ptr2, ptr3, input=document.body.innerHTML, lgptr=document.getElementById("mylgno"), yearptr=document.getElementById("hiyear");
 
@@ -338,8 +341,14 @@ window.setTimeout( function() {
      if (ptr1>=0) {
         ptr2=input.lastIndexOf("\">", ptr1);
         ptr3=input.lastIndexOf("lookatplayer=", ptr1);
-        if (ptr3>=0 && ptr2>ptr3)
+        if (ptr3>=0 && ptr2>ptr3) {
           playerid=parseInt(input.substring(ptr3+13, ptr2));
+        }
+
+        alert("found 'by Game Stats'");
+     }
+     else {
+        alert("did not find 'by Game Stats'");
      }
 
      ptr1=input.indexOf("attsnoinj", 0);
@@ -351,6 +360,8 @@ window.setTimeout( function() {
        if (ptr2>=0 && ptr3>ptr2) {
 
          attrstr=input.substring(ptr2+7, ptr3);
+
+         alert("attrstr = " + attrstr);
        
          for (var x=0; x<attrstr.length; x+=2) {
            ptr1=attrstr.substring(x, x+2);
