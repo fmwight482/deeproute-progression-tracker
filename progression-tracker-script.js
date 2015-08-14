@@ -334,7 +334,7 @@ window.setTimeout( function() {
         }
      }
 
-     ptr1=input.indexOf("By Game Stats");
+     ptr1=input.indexOf("by Game Stats");
      if (ptr1>=0) {
         ptr2=input.lastIndexOf("\">", ptr1);
         ptr3=input.lastIndexOf("lookatplayer=", ptr1);
