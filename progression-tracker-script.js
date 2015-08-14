@@ -13,7 +13,6 @@
 // @include        http://deeproute.com/?js=oneplayer&leagueno=*&lookatplayer=*
 // @include        http://deeproute.com/?js=oneplayer&myleagueno=*&lookatplayer=*
 // @include        http://deeproute.com/default.asp?js=oneplayer&leagueno=*&lookatplayer=*
-// @include        http://deeproute.com/?js=oneplayergamebygame&myleagueno=*&lookatplayer=*
 // ==/UserScript==
 
 var prefix="DR_progress";
