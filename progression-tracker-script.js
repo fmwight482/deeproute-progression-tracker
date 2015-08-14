@@ -413,22 +413,14 @@ window.setTimeout( function() {
 
     var target = document.getElementById('storeme');
 
-    if (target) { 
-
-      target.insertBefore(newDiv, 
-      target.nextSibling);
-
-      target.insertBefore(buttontable, 
-      target.nextSibling);
-      
+    if (target) {
       
       target.parentNode.parentNode.parentNode.parentNode.parentNode.insertBefore(newDiv, 
       target.parentNode.parentNode.parentNode.parentNode.nextSibling);
 
       target.parentNode.parentNode.parentNode.parentNode.parentNode.insertBefore(buttontable, 
       target.parentNode.parentNode.parentNode.parentNode.nextSibling);
-      // */
-   }
+    }
   }
 
   
