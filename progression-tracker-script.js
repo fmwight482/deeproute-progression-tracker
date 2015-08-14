@@ -2,7 +2,7 @@
 // @name           Player Progression Tracker
 // @namespace      Deep Route
 // @author         Triplex
-// @version        1.1
+// @version        1.2
 // @description      Stores player attributes for the Deeproute.com online football game
 // @include        http://deeproute.com/default.asp?js=oneplayer&lookatplayer=*&leagueno=*
 // @include        http://deeproute.com/default.asp?js=oneplayer&lookatplayer=*&myleagueno=*
@@ -11,8 +11,8 @@
 // @include        http://deeproute.com/default.asp?js=rosters&myleagueno=*&myteamno=*
 // @include        http://deeproute.com/?js=rosters&myleagueno=*&myteamno=*
 // @include        http://deeproute.com/?js=oneplayer&leagueno=*&lookatplayer=*
+// @include        http://deeproute.com/?js=oneplayer&myleagueno=*&lookatplayer=*
 // @include        http://deeproute.com/default.asp?js=oneplayer&leagueno=*&lookatplayer=*
-// @include        http://deeproute.com/?js=oneplayergamebygame&myleagueno=*&lookatplayer=*
 // ==/UserScript==
 
 var prefix="DR_progress";
@@ -312,15 +312,13 @@ window.setTimeout( function() {
     var target = document.getElementById('hili1');
     if (target) { 
 
-      target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.
-             parentNode.parentNode.parentNode.insertBefore(newDiv, target.parentNode.parentNode.parentNode.parentNode.
-             parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.nextSibling);
+      target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.insertBefore(
+        newDiv, target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.nextSibling);
 
 
-      target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.
-             parentNode.parentNode.parentNode.insertBefore(buttontable, target.parentNode.parentNode.parentNode.parentNode.
-             parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.nextSibling);
-   }
+      target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.insertBefore(
+        buttontable, target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.nextSibling);
+    }
  
      var ptr1, ptr2, ptr3, input=document.body.innerHTML, lgptr=document.getElementById("mylgno"), yearptr=document.getElementById("hiyear");
 
@@ -334,12 +332,13 @@ window.setTimeout( function() {
         }
      }
 
-     ptr1=input.indexOf("By Game Stats");
+     ptr1=input.indexOf("by Game Stats");
      if (ptr1>=0) {
         ptr2=input.lastIndexOf("\">", ptr1);
         ptr3=input.lastIndexOf("lookatplayer=", ptr1);
-        if (ptr3>=0 && ptr2>ptr3)
+        if (ptr3>=0 && ptr2>ptr3) {
           playerid=parseInt(input.substring(ptr3+13, ptr2));
+        }
      }
 
      ptr1=input.indexOf("attsnoinj", 0);
