@@ -2,7 +2,7 @@
 // @name           Player Progression Tracker
 // @namespace      Deep Route
 // @author         Triplex
-// @version        1.1
+// @version        1.2
 // @description      Stores player attributes for the Deeproute.com online football game
 // @include        http://deeproute.com/default.asp?js=oneplayer&lookatplayer=*&leagueno=*
 // @include        http://deeproute.com/default.asp?js=oneplayer&lookatplayer=*&myleagueno=*
