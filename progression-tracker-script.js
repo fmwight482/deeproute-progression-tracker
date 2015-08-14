@@ -270,8 +270,6 @@ window.setTimeout( function() {
 
   if (url.indexOf("oneplayer",0) >= 0) {
 
-    //alert("found oneplayer");
-
 
     var buttontable = document.createElement('table');
     buttontable.setAttribute('cellspacing', '0');
@@ -315,38 +313,13 @@ window.setTimeout( function() {
     var target = document.getElementById('hili1');
     if (target) { 
 
-      //alert("inside if(target)");
-      /*alert("target = " + target.nodeName); 
-      alert("parentnode 1 = " + target.parentNode.nodeName);
-      alert("parentnode 2 = " + target.parentNode.parentNode.nodeName);
-      alert("parentnode 3 = " + target.parentNode.parentNode.parentNode.nodeName);
-      alert("parentnode 4 = " + target.parentNode.parentNode.parentNode.parentNode.nodeName);
-      alert("parentnode 5 = " + target.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName);
-      alert("parentnode 6 = " + target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName);
-      alert("parentnode 7 = " + target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName);
-      alert("parentnode 8 = " + target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName);
-      alert("parentnode 9 = " + target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName);
-      alert("parentnode 10 = " + target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName);
-      alert("parentnode 11 = " + target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName);
-      alert("parentnode 12 = " + target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName);
-      alert("parentnode 13 = " + target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName);
-      // */
-
       target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.insertBefore(
         newDiv, target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.nextSibling);
-
-      /*target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.
-             parentNode.parentNode.parentNode.insertBefore(newDiv, target.parentNode.parentNode.parentNode.parentNode.
-             parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.nextSibling); */
-
-
-      alert("inserted newdiv");
 
 
       target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.insertBefore(
         buttontable, target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.nextSibling);
     }
-    alert("after if(target)");
  
      var ptr1, ptr2, ptr3, input=document.body.innerHTML, lgptr=document.getElementById("mylgno"), yearptr=document.getElementById("hiyear");
 
@@ -367,11 +340,6 @@ window.setTimeout( function() {
         if (ptr3>=0 && ptr2>ptr3) {
           playerid=parseInt(input.substring(ptr3+13, ptr2));
         }
-
-        alert("found 'by Game Stats'");
-     }
-     else {
-        alert("did not find 'by Game Stats'");
      }
 
      ptr1=input.indexOf("attsnoinj", 0);
@@ -383,8 +351,6 @@ window.setTimeout( function() {
        if (ptr2>=0 && ptr3>ptr2) {
 
          attrstr=input.substring(ptr2+7, ptr3);
-
-         alert("attrstr = " + attrstr);
        
          for (var x=0; x<attrstr.length; x+=2) {
            ptr1=attrstr.substring(x, x+2);
