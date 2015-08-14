@@ -418,13 +418,9 @@ window.setTimeout( function() {
       target.parentNode.parentNode.parentNode.parentNode.parentNode.insertBefore(newDiv, 
       target.parentNode.parentNode.parentNode.parentNode.nextSibling);
 
-      alert("inserted newDiv");
-
       target.parentNode.parentNode.parentNode.parentNode.parentNode.insertBefore(buttontable, 
       target.parentNode.parentNode.parentNode.parentNode.nextSibling);
-      // */
     }
-    alert("after if(target)");
   }
 
   
