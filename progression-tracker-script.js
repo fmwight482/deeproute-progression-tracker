@@ -4,6 +4,8 @@
 // @author         Triplex
 // @version        1.2
 // @description      Stores player attributes for the Deeproute.com online football game
+// @grant          GM_getValue
+// @grant          GM_setValue
 // @include        http://deeproute.com/default.asp?js=oneplayer&lookatplayer=*&leagueno=*
 // @include        http://deeproute.com/default.asp?js=oneplayer&lookatplayer=*&myleagueno=*
 // @include        http://deeproute.com/?js=oneplayer&lookatplayer=*&leagueno=*
@@ -232,34 +234,34 @@ function save_all() {
 }
 
 function delete_all() {
-	
+  
     var shouldDelete = confirm("are you sure you want to delete all records?"); 
     
     if (shouldDelete == true) {
- 		for (var x=0; x<pidlist.length; x++) {
-			
-     		var indexstr=prefix+"_"+lgno+"_"+pidlist[x];
-     		var storedata=GM_getValue(indexstr);
-			
-     		if (storedata!=null)
-       		GM_setValue(indexstr, "deleted");
-  		}
+    for (var x=0; x<pidlist.length; x++) {
+      
+        var indexstr=prefix+"_"+lgno+"_"+pidlist[x];
+        var storedata=GM_getValue(indexstr);
+      
+        if (storedata!=null)
+          GM_setValue(indexstr, "deleted");
+      }
 
-  		var divptr=document.getElementById("progress_all_mesg");
-  		divptr.innerHTML="Attribuite records deleted";
+      var divptr=document.getElementById("progress_all_mesg");
+      divptr.innerHTML="Attribuite records deleted";
     }
 
 }
 
 function delete_data() {
-	
+  
     var shouldDelete = confirm("are you sure you want to delete this player's records?"); 
     
     if (shouldDelete == true) {
-   		var indexstr=prefix+"_"+lgno+"_"+playerid;
-   		GM_setValue(indexstr, "deleted");
-   		var divptr=document.getElementById("progress_mesg");
-   		divptr.innerHTML="Old data deleted";
+      var indexstr=prefix+"_"+lgno+"_"+playerid;
+      GM_setValue(indexstr, "deleted");
+      var divptr=document.getElementById("progress_mesg");
+      divptr.innerHTML="Old data deleted";
     }
 }
 
