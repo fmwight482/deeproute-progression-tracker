@@ -2,7 +2,7 @@
 // @name           Player Progression Tracker
 // @namespace      Deep Route
 // @author         Triplex
-// @version        1.2
+// @version        1.3
 // @description      Stores player attributes for the Deeproute.com online football game
 // @grant          GM_getValue
 // @grant          GM_setValue
@@ -25,7 +25,7 @@ function addtr(intable, incol, isBold) {
   var tr1 = document.createElement("tr"), color;
   intable.appendChild(tr1);
 
-  if (counter++%2==0) color='#FFFFDD';
+  if (counter++%2===0) color='#FFFFDD';
   else color='#EEFFFF';
 
   for (var x=0; x<incol.length; x++) {
@@ -35,7 +35,7 @@ function addtr(intable, incol, isBold) {
     var newDiv = document.createElement('div');
     newDiv.innerHTML=incol[x];
     td1.appendChild(newDiv);
-    if (isBold || x==0) td1.setAttribute('style', 'font-weight: bold;');
+    if (isBold || x===0) td1.setAttribute('style', 'font-weight: bold;');
     td1.setAttribute('bgcolor', color);
 
     tr1.appendChild(td1);
@@ -102,7 +102,7 @@ function print_progression() {
   var storedata=GM_getValue(indexstr);
   var divptr=document.getElementById("progress_mesg"), cols;
 
-  if (storedata==null || storedata=="deleted")
+  if (storedata===null || storedata=="deleted")
     divptr.innerHTML="No historical data is saved previously or data of this player is deleted";  
   else if (run==1)
     divptr.innerHTML="Progression table is displayed already";  
@@ -173,7 +173,7 @@ function save_data() {
    var indexstr=prefix+"_"+lgno+"_"+playerid;
    var storedata=GM_getValue(indexstr);
 
-   if ((storedata==null || storedata=="deleted") && attr!="" && curryear!=-1) {
+   if ((storedata===null || storedata=="deleted") && attr!=="" && curryear!=-1) {
       GM_setValue(indexstr, curryear.toString()+":"+attrstr+".");
       var divptr=document.getElementById("progress_mesg");
       divptr.innerHTML="Attributes Saved";
@@ -189,7 +189,7 @@ function save_data() {
 
       var divptr=document.getElementById("progress_mesg");
 
-      if (found==0) {
+      if (found===0) {
          GM_setValue(indexstr, storedata+curryear.toString()+":"+attrstr+".");
          divptr.innerHTML="Attributes Saved";
       }
@@ -211,7 +211,7 @@ function save_all() {
      var atts=attsptr[0].value.toString();
      var storedata=GM_getValue(indexstr);
 
-     if (storedata==null || storedata=="deleted") 
+     if (storedata===null || storedata=="deleted") 
        GM_setValue(indexstr, curryear.toString()+":"+atts+".");
      else {
 
@@ -223,7 +223,7 @@ function save_all() {
             break;
          }
 
-       if (found==0)
+       if (found===0)
          GM_setValue(indexstr, storedata+curryear.toString()+":"+atts+".");
      }
   }
@@ -237,13 +237,13 @@ function delete_all() {
   
     var shouldDelete = confirm("are you sure you want to delete all records?"); 
     
-    if (shouldDelete == true) {
+    if (shouldDelete === true) {
     for (var x=0; x<pidlist.length; x++) {
       
         var indexstr=prefix+"_"+lgno+"_"+pidlist[x];
         var storedata=GM_getValue(indexstr);
       
-        if (storedata!=null)
+        if (storedata!==null)
           GM_setValue(indexstr, "deleted");
       }
 
@@ -257,7 +257,7 @@ function delete_data() {
   
     var shouldDelete = confirm("are you sure you want to delete this player's records?"); 
     
-    if (shouldDelete == true) {
+    if (shouldDelete === true) {
       var indexstr=prefix+"_"+lgno+"_"+playerid;
       GM_setValue(indexstr, "deleted");
       var divptr=document.getElementById("progress_mesg");
@@ -324,11 +324,11 @@ window.setTimeout( function() {
  
      var ptr1, ptr2, ptr3, input=document.body.innerHTML, lgptr=document.getElementById("mylgno"), yearptr=document.getElementById("hiyear");
 
-     if (lgptr!=null) lgno=lgptr.value;
+     if (lgptr!==null) lgno=lgptr.value;
      var yearptr1=document.getElementById("thisyear");
-     if (yearptr1!=null) curryear=parseInt(yearptr1.value);
+     if (yearptr1!==null) curryear=parseInt(yearptr1.value);
      else {
-        if (yearptr!=null) {
+        if (yearptr!==null) {
            curryear=parseInt(yearptr.value);
            if (curryear<10) curryear=-1;
         }
@@ -369,8 +369,8 @@ window.setTimeout( function() {
     var lgptr=document.getElementById("mylgno"), pids=document.getElementsByName("pid"), yearptr=document.getElementById("myseason");
     var currptr=0, ptr1, ptr2, str1;
 
-    if (lgptr!=null) lgno=lgptr.value;
-    if (yearptr!=null) curryear=parseInt(yearptr.value);
+    if (lgptr!==null) lgno=lgptr.value;
+    if (yearptr!==null) curryear=parseInt(yearptr.value);
 
     str1=(pids[0].value).toString();
 
