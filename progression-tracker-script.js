@@ -110,7 +110,7 @@ function constructCols(inname, index1, index2) {
 function print_progression() {
 
 	var indexstr=prefix+"_"+lgno+"_"+playerid;
-	var storedata=GM_getValue(indexstr);
+	var storedata=GM_getValue(indexstr, null);
 	var divptr=document.getElementById("progress_mesg"), cols;
 
 	if (storedata===null || storedata=="deleted") {
@@ -185,7 +185,7 @@ function print_progression() {
 function save_data() {
 
 	var indexstr=prefix+"_"+lgno+"_"+playerid;
-	var storedata=GM_getValue(indexstr);
+	var storedata=GM_getValue(indexstr, null);
 
 	if ((storedata===null || storedata=="deleted") && attr!=="" && curryear!=-1) {
 		GM_setValue(indexstr, curryear.toString()+":"+attrstr+".");
@@ -226,14 +226,12 @@ function save_all() {
 		var str1="pattnoinj"+pidlist[x];
 		var attsptr=document.getElementsByName(str1);
 		var atts=attsptr[0].value.toString();
-		var storedata=GM_getValue(indexstr);
+		var storedata=GM_getValue(indexstr, null);
 
 		if (storedata===null || storedata=="deleted") {
 			GM_setValue(indexstr, curryear.toString()+":"+atts+".");
-			//alert("storedata = " + storedata);
 		}
 		else {
-
 			parseData(storedata);
 			var found=0;
 			for (var y=0; y<alldata.length; y++) {
@@ -262,7 +260,7 @@ function delete_all() {
 		for (var x=0; x<pidlist.length; x++) {
 
 			var indexstr=prefix+"_"+lgno+"_"+pidlist[x];
-			var storedata=GM_getValue(indexstr);
+			var storedata=GM_getValue(indexstr, null);
 
 			if (storedata!==null) {
 				GM_setValue(indexstr, "deleted");
