@@ -2,7 +2,7 @@
 // @name           Player Progression Tracker
 // @namespace      Deep Route
 // @author         Triplex
-// @version        1.3.1
+// @version        1.3.2
 // @description      Stores player attributes for the Deeproute.com online football game
 // @grant          GM_getValue
 // @grant          GM_setValue
@@ -99,7 +99,30 @@ function constructCols(inname, index1, index2) {
 	cols[0]=inname;
 
 	for (var x=0; x<alldata.length; x++) {
-		cols[x+1]=(alldata[x][index1]).toString() + "/" + (alldata[x][index2]).toString();
+		var cell = (alldata[x][index1]).toString() + "/" + (alldata[x][index2]).toString();
+		if (x > 0) {
+			var curDelta;
+			var potDelta;
+			var currentDeltaInt = alldata[x][index1] - alldata[x-1][index1];
+			var potentialDeltaInt = alldata[x][index2] - alldata[x-1][index2];
+
+			if (currentDeltaInt < 0) {
+				curDelta = currentDeltaInt.toString();
+			}
+			else {
+				curDelta = "+" + currentDeltaInt.toString();
+			}
+
+			if (potentialDeltaInt < 0) {
+				potDelta = potentialDeltaInt.toString();
+			}
+			else {
+				potDelta = "+" + potentialDeltaInt.toString();
+			}
+
+			cell = cell.concat(" (" + curDelta + "/" + potDelta + ")");
+		}
+		cols[x+1]=cell;
 	}
 
 	cols[cols.length]=(attr[index1-1]).toString() + "/" + (attr[index2-1]).toString();
@@ -127,7 +150,7 @@ function print_progression() {
 		var outtable = document.createElement("table");
 		outtable.setAttribute("border","1");
 		outtable.setAttribute("cellspacing","0");
-		outtable.setAttribute('style','width: 100%');
+		outtable.setAttribute('style','width: 100%; table-layout: fixed');
 		outtable.setAttribute('id',"combine table");
 
 		cols=[];
