@@ -120,7 +120,7 @@ function constructCols(inname, index1, index2) {
 				potDelta = "+" + potentialDeltaInt.toString();
 			}
 
-			cell = cell.concat(" (" + curDelta + "/" + potDelta + ")");
+			cell = cell.concat("<span class='delta" + x + "' style='display: none'> (" + curDelta + "/" + potDelta + ")</span>");
 		}
 		cols[x+1]=cell;
 	}
@@ -156,7 +156,12 @@ function print_progression() {
 		cols=[];
 		cols[0]="Season";
 		for (var x=0; x<alldata.length; x++) {
-			cols[x+1]=alldata[x][0];
+			if (x === 0) {
+				cols[x+1]=alldata[x][0];
+			}
+			else {
+				cols[x+1]=alldata[x][0] + " " + addShowHideButtons(x);
+			}
 		}
 		cols[cols.length]="Current";
 
@@ -202,7 +207,16 @@ function print_progression() {
 		divptr.parentNode.insertBefore(outtable, divptr.nextSibling);
 	}
 
+	for (var i=1; i<alldata.length; i++) {
+		var showButtonName = "showDelta" + i;
+		var hideButtonName = "hideDelta" + i;
+		var deltaSpanName = "delta" + i;
+		var showDeltaButton = document.getElementById(showButtonName);
+		showDeltaButton.addEventListener("click", showDelta.bind(null, deltaSpanName, showButtonName, hideButtonName), false);
 
+		var hideDeltaButton = document.getElementById(hideButtonName);
+		hideDeltaButton.addEventListener("click", hideDelta.bind(null, deltaSpanName, showButtonName, hideButtonName), false);
+	}
 }
 
 function save_data() {
@@ -306,6 +320,39 @@ function delete_data() {
 		var divptr=document.getElementById("progress_mesg");
 		divptr.innerHTML="Old data deleted";
 	}
+}
+
+function addShowHideButtons(x) {
+	var buttons = "<a id='showDelta" + x + "' style='display: inline'>(+/-)</a>" + 
+		"<a id='hideDelta" + x + "' style='display: none'>(+/-)</a>";
+	return buttons;
+}
+
+// hide the difference in attributes from the previous year
+function hideDelta(className, showButtonName, hideButtonName) {
+	var toHide = document.getElementsByClassName(className);
+	for (var i=0; i<toHide.length; i++) {
+		toHide[i].style.display = "none";
+	}
+	var showDeltaButton = document.getElementById(showButtonName);
+	showDeltaButton.style.display = "inline";
+
+	var hideDeltaButton = document.getElementById(hideButtonName);
+	hideDeltaButton.style.display = "none";
+}
+
+// show the difference in attributes from the previous year
+function showDelta(className, showButtonName, hideButtonName) {
+	var toShow = document.getElementsByClassName(className);
+	for (var i=0; i<toShow.length; i++) {
+		toShow[i].style.display = "inline";
+	}
+
+	var showDeltaButton = document.getElementById(showButtonName);
+	showDeltaButton.style.display = "none";
+
+	var hideDeltaButton = document.getElementById(hideButtonName);
+	hideDeltaButton.style.display = "inline";
 }
 
 window.setTimeout( function() {
