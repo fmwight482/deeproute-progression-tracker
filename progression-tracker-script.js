@@ -2,7 +2,7 @@
 // @name           Player Progression Tracker
 // @namespace      Deep Route
 // @author         Triplex
-// @version        1.3.2
+// @version        1.3.3
 // @description      Stores player attributes for the Deeproute.com online football game
 // @grant          GM_getValue
 // @grant          GM_setValue
@@ -98,6 +98,9 @@ function constructCols(inname, index1, index2) {
 	var cols=[];
 	cols[0]=inname;
 
+	var gainStyling = "style='font-weight: bold; color: DarkGreen'";
+	var lossStyling = "style='font-weight: bold; color: DarkRed'";
+
 	for (var x=0; x<alldata.length; x++) {
 		var cell = (alldata[x][index1]).toString() + "/" + (alldata[x][index2]).toString();
 		if (x > 0) {
@@ -107,14 +110,20 @@ function constructCols(inname, index1, index2) {
 			var potentialDeltaInt = alldata[x][index2] - alldata[x-1][index2];
 
 			if (currentDeltaInt < 0) {
-				curDelta = currentDeltaInt.toString();
+				curDelta = "<span class='attLoss' " + lossStyling + ">" + currentDeltaInt.toString() + "</span>";
+			}
+			else if (currentDeltaInt > 0) {
+				curDelta = "<span class='attGain' " + gainStyling + ">+" + currentDeltaInt.toString() + "</span>";
 			}
 			else {
 				curDelta = "+" + currentDeltaInt.toString();
 			}
 
 			if (potentialDeltaInt < 0) {
-				potDelta = potentialDeltaInt.toString();
+				potDelta = "<span class='potentialLoss' " + lossStyling + ">" + potentialDeltaInt.toString() + "</span>";
+			}
+			else if (potentialDeltaInt > 0) {
+				potDelta = "<span class='potentialGain' " + gainStyling + ">+" + potentialDeltaInt.toString() + "</span>";
 			}
 			else {
 				potDelta = "+" + potentialDeltaInt.toString();
