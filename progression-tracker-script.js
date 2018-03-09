@@ -332,8 +332,8 @@ function delete_data() {
 }
 
 function addShowHideButtons(x) {
-	var buttons = "<a id='showDelta" + x + "' style='display: inline'>(+/-)</a>" + 
-		"<a id='hideDelta" + x + "' style='display: none'>(+/-)</a>";
+	var buttons = "<a id='showDelta" + x + "' title='Display the change in attributes from the previous season' style='display: inline'>(+/-)</a>" + 
+		"<a id='hideDelta" + x + "' title='Hide the change in attributes from the previous season' style='display: none'>(+/-)</a>";
 	return buttons;
 }
 
