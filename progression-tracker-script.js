@@ -2,7 +2,7 @@
 // @name           Player Progression Tracker
 // @namespace      Deep Route
 // @author         Triplex
-// @version        1.3.3
+// @version        1.4.1
 // @description      Stores player attributes for the Deeproute.com online football game
 // @grant          GM_getValue
 // @grant          GM_setValue
@@ -149,7 +149,18 @@ function print_progression() {
 		divptr.innerHTML="No historical data is saved previously or data of this player is deleted";
 	}
 	else if (run==1) {
-		divptr.innerHTML="Progression table is displayed already";
+		run=2;
+		document.getElementById("print_progression").setAttribute("value", "Show Progression");
+		document.getElementById("combine table").style.display = "none";
+		document.getElementById("progress_mesg").style.visibility = "hidden";
+		//divptr.innerHTML="Progression table is displayed already";
+	}
+	else if (run==2) {
+		run=1;
+		// make existant table visible
+		document.getElementById("print_progression").setAttribute("value", "Hide Progression");
+		document.getElementById("combine table").style.display = "table";
+		document.getElementById("progress_mesg").style.visibility = "visible";
 	}
 	else {
 
@@ -214,6 +225,7 @@ function print_progression() {
 
 		var divptr=document.getElementById("progress_mesg");
 		divptr.parentNode.insertBefore(outtable, divptr.nextSibling);
+		document.getElementById("print_progression").setAttribute("value", "Hide Progression");
 	}
 
 	for (var i=1; i<alldata.length; i++) {
@@ -382,7 +394,7 @@ window.setTimeout( function() {
 		newtd1.setAttribute('colspan', '10');
 		var newDiv2 = document.createElement('div');
 		newDiv2.align = 'center';
-		newDiv2.innerHTML = '<input type="button" style="font-size: 10pt; font-weight: bold; width: 100%; height: 30px" value="Show Progression">';
+		newDiv2.innerHTML = '<input id="print_progression" type="button" style="font-size: 10pt; font-weight: bold; width: 100%; height: 30px" value="Show Progression">';
 		newDiv2.addEventListener('click', function() { print_progression(); }, true);
 		newtd1.appendChild(newDiv2);
 		newtr.appendChild(newtd1);
