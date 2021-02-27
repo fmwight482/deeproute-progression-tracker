@@ -134,7 +134,37 @@ function constructCols(inname, index1, index2) {
 		cols[x+1]=cell;
 	}
 
-	cols[cols.length]=(attr[index1-1]).toString() + "/" + (attr[index2-1]).toString();
+	// compare current atts to the last column of historical atts
+	var curCell = (attr[index1-1]).toString() + "/" + (attr[index2-1]).toString();
+	var lastIndex = alldata.length - 1;
+	var curDelta;
+	var potDelta;
+	var currentDeltaInt = attr[index1-1] - alldata[lastIndex][index1];
+	var potentialDeltaInt = attr[index2-1] - alldata[lastIndex][index2];
+
+	if (currentDeltaInt < 0) {
+		curDelta = "<span class='attLoss' " + lossStyling + ">" + currentDeltaInt.toString() + "</span>";
+	}
+	else if (currentDeltaInt > 0) {
+		curDelta = "<span class='attGain' " + gainStyling + ">+" + currentDeltaInt.toString() + "</span>";
+	}
+	else {
+		curDelta = "+" + currentDeltaInt.toString();
+	}
+
+	if (potentialDeltaInt < 0) {
+		potDelta = "<span class='potentialLoss' " + lossStyling + ">" + potentialDeltaInt.toString() + "</span>";
+	}
+	else if (potentialDeltaInt > 0) {
+		potDelta = "<span class='potentialGain' " + gainStyling + ">+" + potentialDeltaInt.toString() + "</span>";
+	}
+	else {
+		potDelta = "+" + potentialDeltaInt.toString();
+	}
+
+	curCell = curCell.concat("<span class='delta" + x + "' style='display: none'> (" + curDelta + "/" + potDelta + ")</span>");
+
+	cols[cols.length] = curCell;
 	return cols;
 }
 
@@ -183,7 +213,7 @@ function print_progression() {
 				cols[x+1]=alldata[x][0] + " " + addShowHideButtons(x);
 			}
 		}
-		cols[cols.length]="Current";
+		cols[cols.length]="Current " + addShowHideButtons(cols.length - 1);
 
 		addtr(outtable, cols, 1);
 		addtr(outtable, constructCols("Overall", 187, 188) ,0);
@@ -228,7 +258,7 @@ function print_progression() {
 		document.getElementById("print_progression").setAttribute("value", "Hide Progression");
 	}
 
-	for (var i=1; i<alldata.length; i++) {
+	for (var i=1; i<=alldata.length; i++) {
 		var showButtonName = "showDelta" + i;
 		var hideButtonName = "hideDelta" + i;
 		var deltaSpanName = "delta" + i;
