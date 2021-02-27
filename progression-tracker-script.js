@@ -2,7 +2,7 @@
 // @name           Player Progression Tracker
 // @namespace      Deep Route
 // @author         Triplex
-// @version        1.4.1
+// @version        1.5
 // @description      Stores player attributes for the Deeproute.com online football game
 // @grant          GM_getValue
 // @grant          GM_setValue
